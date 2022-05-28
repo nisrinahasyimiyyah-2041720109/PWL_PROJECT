@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', [MainController:: class, 'home']);
+
+Route::get('/barang', [MainController:: class, 'index']);
+
+Route::get('/pelanggan', [MainController:: class, 'index']);
+
+Route::get('/pegawai', [MainController:: class, 'index']);
+
+Route::get('/supplier', [MainController:: class, 'supplier']);
