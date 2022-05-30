@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuahController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::get('/', function () {
 */
 Route::get('/', [MainController:: class, 'home']);
 
-Route::get('/barang', [MainController:: class, 'index']);
+Route::resource('buah', BuahController:: class);
 
 Route::get('/pelanggan', [MainController:: class, 'index']);
 

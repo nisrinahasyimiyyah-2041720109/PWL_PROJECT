@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function home()
     {
-        return view('data.home')
+        return view('data_buah.home')
                     ->with('title', 'Home');
     }
 
