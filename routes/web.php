@@ -4,6 +4,7 @@ use App\Http\Controllers\BuahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SayurController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::get('/pelanggan', [MainController:: class, 'index']);
 
 Route::resource('pegawai', PegawaiController:: class);
 
-Route::get('/supplier', [MainController:: class, 'supplier']);
+Route::resource('supplier', supplierController:: class);
+
