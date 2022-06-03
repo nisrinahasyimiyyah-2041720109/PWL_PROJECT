@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\SayurController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::get('/', [MainController:: class, 'home']);
 
 Route::resource('buah', BuahController:: class);
+
+Route::resource('sayur', SayurController:: class);
 
 Route::get('/pelanggan', [MainController:: class, 'index']);
 

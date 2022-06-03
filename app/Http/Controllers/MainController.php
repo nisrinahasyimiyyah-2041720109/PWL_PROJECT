@@ -8,14 +8,8 @@ class MainController extends Controller
 {
     public function home()
     {
-        return view('data_buah.home')
+        return view('home')
                     ->with('title', 'Home');
-    }
-
-    public function barang()
-    {
-        return view('data.barang')
-                    ->with('title', 'Daftar Barang');
     }
 
     public function pelanggan()
