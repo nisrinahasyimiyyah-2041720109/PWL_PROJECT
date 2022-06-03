@@ -51,15 +51,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url('/buah') }}" class="nav-link">
+                    <a href="{{ url('/produk') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Buah</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/sayur') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Sayur</p>
+                    <p>Daftar Produk</p>
                     </a>
                 </li>
                 <li class="nav-item">
