@@ -22,9 +22,9 @@
                         @csrf 
                         @method('PUT')                                            
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="nama" value="{{ $user->name }}" 
-                                aria-describedby="nama">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" 
+                                aria-describedby="name">
                             </div>  
                             <div class="form-group">
                                 <label for="email">Email</label>

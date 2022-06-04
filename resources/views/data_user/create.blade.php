@@ -21,8 +21,8 @@
                     <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data" id="myForm">
                         @csrf
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="name">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>

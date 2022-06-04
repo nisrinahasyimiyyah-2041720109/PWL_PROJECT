@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Nama: </b>{{$user->name}}</li> 
+                        <li class="list-group-item"><b>Name: </b>{{$user->name}}</li> 
                         <li class="list-group-item"><b>Email: </b>{{$user->email}}</li>                        
                         <li class="list-group-item"><b>Alamat: </b>{{$user->alamat}}</li>
                         <li class="list-group-item"><b>Jenis Kelamin: </b>{{$user->jenis_kelamin}}</li>
