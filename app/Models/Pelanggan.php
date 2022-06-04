@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Buah extends Model
+class Pelanggan extends Model
 {
     use HasFactory;
 
-    protected $table = 'buahs';
+    protected $table = 'pelanggans';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama',
-        'kategori',
-        'harga',
-        'stok',
-        'gambar',
+        'kode_pelanggan',
+        'nama',       
+        'alamat',
+        'jenis_kelamin',
+        'nomor_telepon',
     ];
 }

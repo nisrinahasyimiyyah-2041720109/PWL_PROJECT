@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\BuahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\SayurController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +26,7 @@ Route::get('/', [MainController:: class, 'home']);
 
 Route::resource('produk', ProdukController:: class);
 
-Route::get('/pelanggan', [MainController:: class, 'index']);
+Route::resource('pelanggan', PelangganController:: class);
 
 Route::resource('pegawai', PegawaiController:: class);
 
