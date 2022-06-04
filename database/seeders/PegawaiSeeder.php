@@ -23,32 +23,11 @@ class PegawaiSeeder extends Seeder
                 'jabatan' => 'Manager'
             ],
             [
-                'nama' => 'Betari Audiyanti Rahmah',
-                'alamat' => 'Bandung',
-                'jenis_kelamin' => 'Perempuan',
-                'nomor_telepon' => '081772534192',
-                'jabatan' => 'Admin'
-            ],
-            [
-                'nama' => 'Muhammad Hafidz ',
-                'alamat' => 'Jakarta',
-                'jenis_kelamin' => 'Laki-Laki',
-                'nomor_telepon' => '082677451002',
-                'jabatan' => 'Admin'
-            ],
-            [
                 'nama' => 'Indah Purnama Sari',
                 'alamat' => 'Semarang',
                 'jenis_kelamin' => 'Perempuan',
                 'nomor_telepon' => '081990657845',
-                'jabatan' => 'Kasir'
-            ],
-            [
-                'nama' => 'Naufal Alfarih',
-                'alamat' => 'Surabaya',
-                'jenis_kelamin' => 'Laki-Laki',
-                'nomor_telepon' => '085673118994',
-                'jabatan' => 'Kasir'
+                'jabatan' => 'Karyawan'
             ],
             [
                 'nama' => 'Indra Malik Ahmad',

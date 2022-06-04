@@ -14,8 +14,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        //menampilkan data Pegawaib menggunakan pagination
-        $pegawais = Pegawai::paginate(5); //mendapatkan semua isi tabel dengan paginasi 5 buah per halaman
+        //menampilkan data Pegawai menggunakan pagination
+        $pegawais = Pegawai::paginate(3); 
         return view('data_pegawai.index', ['blog' => $pegawais])
                 ->with('title', 'Daftar Pegawai');
     }
@@ -69,7 +69,7 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        //menampilkan detail data dengan menemukan berdasarkan id buah
+        //menampilkan detail data dengan menemukan berdasarkan id pegawai
         $pegawai = Pegawai::find($id);
         return view('data_pegawai.detail', compact('pegawai'))
             ->with('title', 'Tampil Detail Pegawai');
