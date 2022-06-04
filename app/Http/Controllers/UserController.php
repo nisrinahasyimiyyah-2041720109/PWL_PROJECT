@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelanggan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PelangganController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //menampilkan data pelanggan menggunakan pagination
-        $pelanggan = Pelanggan::paginate(5); //mendapatkan semua isi tabel dengan paginasi 5 data per halaman
-        return view('data_pelanggan.index', ['blog' => $pelanggan])
-                ->with('title', 'Daftar Pelanggan');
+        //menampilkan data user menggunakan pagination
+        $user = User::paginate(5); //mendapatkan semua isi tabel dengan paginasi 5 data per halaman
+        return view('data_user.index', ['blog' => $user])
+                ->with('title', 'Daftar User');
     }
 
     /**
@@ -27,8 +27,8 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        return view('data_pelanggan.create')
-            ->with('title', 'Tambah Data Pelanggan');
+        return view('data_user.create')
+            ->with('title', 'Tambah Data User');
     }
 
     /**
@@ -41,23 +41,27 @@ class PelangganController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_pelanggan' => 'required',
-            'nama' => 'required',           
+            'name' => 'required',
+            'email' => 'required',           
+            'password' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'nomor_telepon' => 'required',
+            'level' => 'required',
         ]);
 
-        Pelanggan::create([
-            'kode_pelanggan' => $request->kode_pelanggan,
-            'nama' => $request->nama,           
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,   
+            'password' => $request->password,        
             'alamat' => $request->alamat,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'nomor_telepon' => $request->nomor_telepon,
+            'level' => $request->level,
         ]);
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('pelanggan.index')
-            ->with('success', 'Data Pelanggan Berhasil Ditambahkan');
+        return redirect()->route('user.index')
+            ->with('success', 'Data User Berhasil Ditambahkan');
     }
 
     /**
@@ -69,9 +73,9 @@ class PelangganController extends Controller
     public function show($id)
     {
         //menampilkan detail data dengan menemukan berdasarkan id pelanggan
-        $pelanggan = Pelanggan::find($id);
-        return view('data_pelanggan.detail', compact('pelanggan'))
-            ->with('title', 'Tampil Detail Pelanggan');
+        $user = User::find($id);
+        return view('data_user.detail', compact('user'))
+            ->with('title', 'Tampil Detail User');
     }
 
     /**
@@ -83,9 +87,9 @@ class PelangganController extends Controller
     public function edit($id)
     {
         //menampilkan detail data dengan menemukan berdasarkan id untuk diedit
-        $pelanggan = Pelanggan::find($id);
-        return view('data_pelanggan.edit', compact('pelanggan'))
-            ->with('title', 'Edit Data Pelanggan');
+        $user = User::find($id);
+        return view('data_user.edit', compact('user'))
+            ->with('title', 'Edit Data User');
     }
 
     /**
@@ -99,25 +103,29 @@ class PelangganController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'kode_pelanggan' => 'required',
-            'nama' => 'required',           
+            'name' => 'required',
+            'email' => 'required',           
+            'password' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'nomor_telepon' => 'required',
+            'level' => 'required',
         ]);
 
-        $pelanggan = Pelanggan::find($id);
-        $pelanggan->kode_pelanggan = $request->get('kode_pelanggan');
-        $pelanggan->nama = $request->get('nama');        
-        $pelanggan->alamat = $request->get('alamat');
-        $pelanggan->jenis_kelamin = $request->get('jenis_kelamin');
-        $pelanggan->nomor_telepon = $request->get('nomor_telepon');
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');        
+        $user->alamat = $request->get('alamat');
+        $user->jenis_kelamin = $request->get('jenis_kelamin');
+        $user->nomor_telepon = $request->get('nomor_telepon');
+        $user->level = $request->get('level');
 
-        $pelanggan->save();
+        $user->save();
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->route('pelanggan.index')
-            ->with('success', 'Data Pelanggan Berhasil Diupdate');
+        return redirect()->route('user.index')
+            ->with('success', 'Data User Berhasil Diupdate');
     }
 
     /**
@@ -129,8 +137,8 @@ class PelangganController extends Controller
     public function destroy($id)
     {
         //fungsi eloquent untuk menghapus data
-        Pelanggan::find($id)->delete();
-        return redirect()->route('pelanggan.index')
-            -> with('success', 'Data Pelanggan Berhasil Dihapus');
+        User::find($id)->delete();
+        return redirect()->route('user.index')
+            -> with('success', 'Data User Berhasil Dihapus');
     }
 }

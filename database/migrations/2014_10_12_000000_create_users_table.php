@@ -19,6 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('alamat', 100);
+            $table->string('jenis_kelamin', 10);
+            $table->string('nomor_telepon', 15);
+            $table->tinyInteger('level'); //1 = Admin , 2 = Pelanggan
             $table->rememberToken();
             $table->timestamps();
         });

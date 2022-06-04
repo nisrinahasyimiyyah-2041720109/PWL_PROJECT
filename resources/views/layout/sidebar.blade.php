@@ -57,9 +57,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/pelanggan') }}" class="nav-link">
+                    <a href="{{ url('/user') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Pelanggan</p>
+                    <p>Daftar User</p>
                     </a>
                 </li>
                 <li class="nav-item">

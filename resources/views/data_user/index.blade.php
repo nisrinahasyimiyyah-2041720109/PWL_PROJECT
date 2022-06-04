@@ -3,17 +3,18 @@
 @section('content')
     <div class="table-responsive">
         <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('pelanggan.create') }}">+ Tambah Data Pelanggan</a>
+            <a class="btn btn-success" href="{{ route('user.create') }}">+ Tambah Data User</a>
         </div>
         <table class="table table-head-fixed table-hover">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Kode Pelanggan</th>
-                    <th>Nama</th>                   
+                    <th>Nama</th>
+                    <th>Email</th>           
                     <th>Alamat</th>
                     <th>Jenis Kelamin</th>
                     <th>Nomor Telepon</th>
+                    <th>Level</th>
                     <th width="280px">Action</th>
                 </tr>
             </thead>
@@ -21,15 +22,16 @@
                 @foreach($blog as $b)
                     <tr>
                         <td>{{ $b->id }}</td>
-                        <td>{{ $b->kode_pelanggan }}</td>
-                        <td>{{ $b->nama }}</td>                      
+                        <td>{{ $b->name }}</td>       
+                        <td>{{ $b->email }}</td>               
                         <td>{{ $b->alamat }}</td>
                         <td>{{ $b->jenis_kelamin }}</td>
                         <td>{{ $b->nomor_telepon }}</td>
+                        <td>{{ $b->level }}</td>
                         <td>
-                            <form action="{{ route('pelanggan.destroy',['pelanggan'=>$b->id]) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('pelanggan.show',$b->id) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('pelanggan.edit',$b->id) }}">Edit</a>
+                            <form action="{{ route('user.destroy',['user'=>$b->id]) }}" method="POST">
+                                <a class="btn btn-info" href="{{ route('user.show',$b->id) }}">Show</a>
+                                <a class="btn btn-primary" href="{{ route('user.edit',$b->id) }}">Edit</a>
                     
                                 @csrf
                                 @method('DELETE')

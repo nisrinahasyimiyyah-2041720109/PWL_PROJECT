@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="card" style="width: 24rem;">
                 <div class="card-header">
-                    Tambah Data Pelanggn
+                    Tambah Data User
                 </div>
                 <div class="card-body">
                 @if ($errors->any())
@@ -18,15 +18,19 @@
                         </ul>
                     </div>
                 @endif
-                    <form method="post" action="{{ route('pelanggan.store') }}" enctype="multipart/form-data" id="myForm">
+                    <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data" id="myForm">
                         @csrf
-                            <div class="form-group">
-                                <label for="kode_pelanggan">Kode Pelanggan</label>
-                                <input type="text" name="kode_pelanggan" class="form-control" id="kode_pelanggan" aria-describedby="kode_pelanggan">
-                            </div>
                             <div class="form-group">
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" class="form-control" id="nama" aria-describedby="nama">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" class="form-control" id="email" aria-describedby="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" name="password" class="form-control" id="password" aria-describedby="password">
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
@@ -39,6 +43,10 @@
                             <div class="form-group">
                                 <label for="nomor_telepon">Nomor Telepon</label>
                                 <input type="text" name="nomor_telepon" class="form-control" id="nomor_telepon" aria-describedby="nomor_telepon">
+                            </div>
+                            <div class="form-group">
+                                <label for="level">Level</label>
+                                <input type="text" name="level" class="form-control" id="level" aria-describedby="level">
                             </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
