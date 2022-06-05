@@ -47,7 +47,7 @@ class UserController extends Controller
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'nomor_telepon' => 'required',
-            'level' => 'required',
+            'role' => 'required',
         ]);
 
         User::create([
@@ -57,7 +57,7 @@ class UserController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'nomor_telepon' => $request->nomor_telepon,
-            'level' => $request->level,
+            'role' => $request->role,
         ]);
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('user.index')
@@ -109,7 +109,7 @@ class UserController extends Controller
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'nomor_telepon' => 'required',
-            'level' => 'required',
+            'role' => 'required',
         ]);
 
         $user = User::find($id);
@@ -119,7 +119,7 @@ class UserController extends Controller
         $user->alamat = $request->get('alamat');
         $user->jenis_kelamin = $request->get('jenis_kelamin');
         $user->nomor_telepon = $request->get('nomor_telepon');
-        $user->level = $request->get('level');
+        $user->role = $request->get('role');
 
         $user->save();
 

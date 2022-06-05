@@ -22,7 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/', [MainController:: class, 'home']);
+Route::get('/', function() {
+    return redirect('/login');
+});
 
 Route::resource('produk', ProdukController:: class);
 
@@ -32,3 +34,9 @@ Route::resource('pegawai', PegawaiController:: class);
 
 Route::resource('supplier', supplierController:: class);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');

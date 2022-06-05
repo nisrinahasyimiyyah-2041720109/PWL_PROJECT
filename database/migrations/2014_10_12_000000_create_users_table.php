@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat', 100);
             $table->string('jenis_kelamin', 10);
             $table->string('nomor_telepon', 15);
-            $table->tinyInteger('level'); //1 = Admin , 2 = Pelanggan
+            $table->enum('role',['admin','pelanggan']);
             $table->rememberToken();
             $table->timestamps();
         });

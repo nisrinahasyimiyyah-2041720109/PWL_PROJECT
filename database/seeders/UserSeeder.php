@@ -22,16 +22,16 @@ class UserSeeder extends Seeder
                 'alamat' => 'Batu',
                 'jenis_kelamin' => 'Perempuan',
                 'nomor_telepon' => '081435666098',
-                'level' => 1,
+                'role' => 'admin',
             ],
             [
                 'name' => 'Khairun Nisa',
                 'email' => 'nisa@gmail.com',
-                'password' => bcrypt('87654321'),
+                'password' => bcrypt('12345678'),
                 'alamat' => 'Malang',
                 'jenis_kelamin' => 'Perempuan',
                 'nomor_telepon' => '085623009871',
-                'level' => 1,
+                'role' => 'admin',
             ],
             [
                 'name' => 'Mahardika Benedict',
@@ -40,16 +40,16 @@ class UserSeeder extends Seeder
                 'alamat' => 'Kediri',
                 'jenis_kelamin' => 'Laki-Laki',
                 'nomor_telepon' => '081879578911',
-                'level' => 2,
+                'role' => 'pelanggan',
             ],
             [
                 'name' => 'Dika Firmasnyah',
                 'email' => 'dika@gmail.com',
-                'password' => bcrypt('22222222'),
+                'password' => bcrypt('11111111'),
                 'alamat' => 'Sidoarjo',
                 'jenis_kelamin' => 'Laki-Laki',
                 'nomor_telepon' => '085672338140',
-                'level' => 2,
+                'role' => 'pelanggan',
             ]
         ];
         DB::table('users')->insert($data);

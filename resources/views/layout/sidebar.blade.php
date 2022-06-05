@@ -40,16 +40,10 @@
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Home</p>
                 </a>
-            </li>                                                      
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                    Menu
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
+            </li> 
+            
+            <li class="nav-header">MASTER</li>                                                     
+            <li class="nav-item">            
                 <li class="nav-item">
                     <a href="{{ url('/produk') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -73,15 +67,40 @@
                     <i class="far fa-circle nav-icon"></i>
                     <p>Daftar Supplier</p>
                     </a>
-                </li>
-                </ul>
+                </li>                
             </li>
-            <li class="nav-item">
-                <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Documentation</p>
-                </a>
-            </li>                  
+            <li class="nav-header">TRANSAKSI</li>
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pengeluaran</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pembelian</p>
+                    </a>
+                </li>   
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Penjualan</p>
+                    </a>
+                </li>   
+            <li class="nav-header">MENU</li>  
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Transaksi Baru</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/user') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Riwayat Transaksi</p>
+                    </a>
+                </li>  
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -36,7 +36,26 @@
           </form>
         </div>
       </li>
-
+      <!-- Logout -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="{{asset('template')}}/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle" style="size:30px;">
+          {{ Auth::user()->name }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <!-- Tombol Logout -->
+            <div class="media">             
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-default btn-flat">Logout</button>
+                  </form>
+                </h3>
+              </div>
+            </div>
+        </div>
+      </li>
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
