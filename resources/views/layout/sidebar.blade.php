@@ -41,66 +41,68 @@
                 <p>Home</p>
                 </a>
             </li> 
-            
-            <li class="nav-header">MASTER</li>                                                     
-            <li class="nav-item">            
-                <li class="nav-item">
-                    <a href="{{ url('/produk') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Produk</p>
-                    </a>
+            @can('isAdmin')
+                <li class="nav-header">MASTER</li>                                                     
+                <li class="nav-item">            
+                    <li class="nav-item">
+                        <a href="{{ url('/produk') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar Produk</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar User</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/pegawai') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar Pegawai</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/supplier') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar Supplier</p>
+                        </a>
+                    </li>                
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar User</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/pegawai') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Pegawai</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/supplier') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Daftar Supplier</p>
-                    </a>
-                </li>                
-            </li>
-            <li class="nav-header">TRANSAKSI</li>
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pengeluaran</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pembelian</p>
-                    </a>
-                </li>   
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Penjualan</p>
-                    </a>
-                </li>   
-            <li class="nav-header">MENU</li>  
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Transaksi Baru</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/user') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Riwayat Transaksi</p>
-                    </a>
-                </li>  
+                <li class="nav-header">TRANSAKSI</li>
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pengeluaran</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pembelian</p>
+                        </a>
+                    </li>   
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Penjualan</p>
+                        </a>
+                    </li> 
+            @elsecan('isPelanggan')  
+                <li class="nav-header">MENU</li>  
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Transaksi Baru</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/user') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Riwayat Transaksi</p>
+                        </a>
+                    </li>  
+            @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
