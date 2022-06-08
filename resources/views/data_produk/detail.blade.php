@@ -11,7 +11,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Kode Produk: </b>{{$produk->kode_produk}}</li>
                         <li class="list-group-item"><b>Nama Produk: </b>{{$produk->nama_produk}}</li>                       
-                        <li class="list-group-item"><b>Kategori: </b>{{$produk->kategori}}</li>
+                        <li class="list-group-item"><b>Kategori: </b>{{$produk->kategori->nama_kategori}}</li>
                         <li class="list-group-item"><b>Harga Beli: </b>{{$produk->harga_beli}}</li>
                         <li class="list-group-item"><b>Harga Jual: </b>{{$produk->harga_jual}}</li>
                         <li class="list-group-item"><b>Stok: </b>{{$produk->stok}}</li>

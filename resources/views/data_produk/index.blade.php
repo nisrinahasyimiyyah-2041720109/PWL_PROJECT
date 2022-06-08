@@ -20,20 +20,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($blog as $b)
+                @foreach($paginate as $p)
                     <tr>
-                        <td>{{ $b->id }}</td>
-                        <td>{{ $b->kode_produk }}</td>
-                        <td>{{ $b->nama_produk }}</td>                      
-                        <td>{{ $b->kategori }}</td>
-                        <td>{{ $b->harga_beli }}</td>
-                        <td>{{ $b->harga_jual }}</td>
-                        <td>{{ $b->stok }}</td>
-                        <td><img width="110px" src="{{asset('storage/'.$b->gambar)}}"></td>
+                        <td>{{ $p->id }}</td>
+                        <td>{{ $p->kode_produk }}</td>
+                        <td>{{ $p->nama_produk }}</td>                      
+                        <td>{{ $p->kategori->nama_kategori }}</td>
+                        <td>{{ $p->harga_beli }}</td>
+                        <td>{{ $p->harga_jual }}</td>
+                        <td>{{ $p->stok }}</td>
+                        <td><img width="110px" src="{{asset('storage/'.$p->gambar)}}"></td>
                         <td>
-                            <form action="{{ route('produk.destroy',['produk'=>$b->id]) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('produk.show',$b->id) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('produk.edit',$b->id) }}">Edit</a>
+                            <form action="{{ route('produk.destroy',['produk'=>$p->id]) }}" method="POST">
+                                <a class="btn btn-info" href="{{ route('produk.show',$p->id) }}">Show</a>
+                                <a class="btn btn-primary" href="{{ route('produk.edit',$p->id) }}">Edit</a>
                     
                                 @csrf
                                 @method('DELETE')
@@ -47,6 +47,6 @@
         </table>
     </div>
     <div class="d-flex">
-        {{ $blog->links() }}
+        {{ $paginate->links() }}
     </div>
 @endsection
