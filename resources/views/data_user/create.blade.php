@@ -45,8 +45,8 @@
                                 <input type="text" name="nomor_telepon" class="form-control" id="nomor_telepon" aria-describedby="nomor_telepon">
                             </div>
                             <div class="form-group">
-                                <label for="level">Level</label>
-                                <input type="text" name="level" class="form-control" id="level" aria-describedby="level">
+                                <label for="role">Role</label>
+                                <input type="text" name="role" class="form-control" id="role" aria-describedby="role">
                             </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

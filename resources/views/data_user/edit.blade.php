@@ -52,8 +52,8 @@
                                 aria-describedby="nomor_telepon">
                             </div>
                             <div class="form-group">
-                                <label for="level">Level</label>
-                                <input type="text" name="level" class="form-control" id="level" value="{{ $user->level }}" 
+                                <label for="role">Role</label>
+                                <input type="text" name="role" class="form-control" id="role" value="{{ $user->role }}" 
                                 aria-describedby="level">
                             </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
