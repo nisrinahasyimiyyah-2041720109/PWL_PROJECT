@@ -31,7 +31,7 @@
                         <td>{{ $b->stok }}</td>
                         <td><img width="110px" src="{{asset('storage/'.$b->gambar)}}"></td>
                         <td>
-                            <form action="{{ route('produk.destroy',['produk'=>$b->id]) }}" method="POST">
+                            <form action="{{ route('produk.destroy',['produk'=>$b->id]) }}" method="POST" method="POST" class="d-inline" onsubmit="return confirm('Apakah Yakin Menghapus Data Produk?')">
                                 <a class="btn btn-info" href="{{ route('produk.show',$b->id) }}">Show</a>
                                 <a class="btn btn-primary" href="{{ route('produk.edit',$b->id) }}">Edit</a>
                     
