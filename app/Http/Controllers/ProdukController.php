@@ -55,7 +55,7 @@ class ProdukController extends Controller
            $nama_gambar = $request->file('gambar')->store('gambar', 'public');
         }
 
-        Buah::create([
+        Produk::create([
             'kode_produk' => $request->kode_produk,
             'nama_produk' => $request->nama_produk,           
             'kategori' => $request->kategori,

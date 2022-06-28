@@ -23,7 +23,7 @@
                     <td>{{ $b->alamat }}</td>
                     <td>{{ $b->nomor_telepon }}</td>
                     <td>
-                            <form action="{{ route('supplier.destroy',['supplier'=>$b->id]) }}" method="POST" method="POST" class="d-inline" onsubmit="return confirm('Apakah Yakin Menghapus Data Supplier?')">
+                            <form action="{{ route('supplier.destroy',['supplier'=>$b->id]) }}" method="POST" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda Yakin Menghapus Data Supplier?')">
                                 <a class="btn btn-info" href="{{ route('supplier.show',$b->id) }}">Show</a>
                                 <a class="btn btn-primary" href="{{ route('supplier.edit',$b->id) }}">Edit</a>
                     
