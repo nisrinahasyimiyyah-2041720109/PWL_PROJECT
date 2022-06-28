@@ -14,7 +14,7 @@
                     <img src="{{asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 </div>
             </div>
 
@@ -91,15 +91,15 @@
             @elsecan('isPelanggan')  
                 <li class="nav-header">MENU</li>  
                     <li class="nav-item">
-                        <a href="{{ url('/user') }}" class="nav-link">
+                        <a href="{{ route('transaksi.baru') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Transaksi Baru</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/user') }}" class="nav-link">
+                        <a href="{{ route('transaksi.index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Riwayat Transaksi</p>
+                        <p>Transaksi Lama</p>
                         </a>
                     </li>  
             @endcan
