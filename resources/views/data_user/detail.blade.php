@@ -14,7 +14,7 @@
                         <li class="list-group-item"><b>Alamat: </b>{{$user->alamat}}</li>
                         <li class="list-group-item"><b>Jenis Kelamin: </b>{{$user->jenis_kelamin}}</li>
                         <li class="list-group-item"><b>Nomor Telepon: </b>{{$user->nomor_telepon}}</li>
-                        <li class="list-group-item"><b>Level: </b>{{$user->level}}</li> 
+                        <li class="list-group-item"><b>Role: </b>{{$user->role}}</li> 
                     </ul>
                 </div>
                 <a class="btn btn-success mt-3" href="{{ route('user.index') }}">Kembali</a>

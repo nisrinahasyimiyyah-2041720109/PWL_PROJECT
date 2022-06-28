@@ -32,9 +32,11 @@
                                 aria-describedby="nama_produk">
                             </div>                          
                             <div class="form-group">
-                                <label for="kategori">Kategori</label>
-                                <select class="form-control" name="kategori" id="kategori" aria-describedby="kategori">                               
-                                    <option value="{{$produk->kategori}}" {{$produk->kategori ? 'selected' : ''}}>{{$produk->kategori}}</option>
+                                <label for="kategori_id">Kategori</label>
+                                <select class="form-control" name="kategori_id" id="kategori_id" aria-describedby="kategori_id">                               
+                                @foreach($kategori as $ktg)    
+                                    <option value="{{$ktg->id}}" {{$produk->kategori_id == $ktg->id ? 'selected' : ''}}>{{$ktg->nama_kategori}}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

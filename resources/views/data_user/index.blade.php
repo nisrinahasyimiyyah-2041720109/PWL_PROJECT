@@ -14,7 +14,7 @@
                     <th>Alamat</th>
                     <th>Jenis Kelamin</th>
                     <th>Nomor Telepon</th>
-                    <th>Level</th>
+                    <th>Role</th>
                     <th width="280px">Action</th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                         <td>{{ $b->alamat }}</td>
                         <td>{{ $b->jenis_kelamin }}</td>
                         <td>{{ $b->nomor_telepon }}</td>
-                        <td>{{ $b->level }}</td>
+                        <td>{{ $b->role }}</td>
                         <td>
                             <form action="{{ route('user.destroy',['user'=>$b->id]) }}" method="POST" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda Yakin Menghapus Data User?')">
                                 <a class="btn btn-info" href="{{ route('user.show',$b->id) }}">Show</a>

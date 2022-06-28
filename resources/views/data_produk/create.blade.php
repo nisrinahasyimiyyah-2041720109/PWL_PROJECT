@@ -29,11 +29,11 @@
                                 <input type="text" name="nama_produk" class="form-control" id="nama_produk" aria-describedby="nama_produk">
                             </div>
                             <div class="form-group">
-                                <label for="kategori">Kategori</label>
-                                <select class="form-control" name="kategori" id="kategori" aria-describedby="kategori">
-                                    <option selected>Pilih Kategori</option>
-                                    <option value="Buah">Buah</option>
-                                    <option value="Sayur">Sayur</option>
+                                <label for="kategori_id">Kategori</label>
+                                <select class="form-control" name="kategori_id" id="kategori_id" aria-describedby="kategori_id">
+                                @foreach($kategori as $ktg)
+                                    <option value="{{$ktg->id}}">{{$ktg->nama_kategori}}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

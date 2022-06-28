@@ -53,7 +53,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,   
-            'password' => $request->password,        
+            'password' => $request->bcrypt(password),        
             'alamat' => $request->alamat,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'nomor_telepon' => $request->nomor_telepon,
@@ -115,7 +115,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = $request->get('password');        
+        $user->password = $request->get(bcrypt('password'));        
         $user->alamat = $request->get('alamat');
         $user->jenis_kelamin = $request->get('jenis_kelamin');
         $user->nomor_telepon = $request->get('nomor_telepon');

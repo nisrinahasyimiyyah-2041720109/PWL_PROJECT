@@ -15,7 +15,7 @@ class PegawaiController extends Controller
     public function index()
     {
         //menampilkan data Pegawai menggunakan pagination
-        $pegawais = Pegawai::paginate(3); 
+        $pegawais = Pegawai::paginate(5); 
         return view('data_pegawai.index', ['blog' => $pegawais])
                 ->with('title', 'Daftar Pegawai');
     }
