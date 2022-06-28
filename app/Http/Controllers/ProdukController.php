@@ -58,20 +58,6 @@ class ProdukController extends Controller
         if ($request->file('gambar')) {
            $nama_gambar = $request->file('gambar')->store('gambar', 'public');
         }
-<<<<<<< HEAD
-
-=======
-        /*
->>>>>>> 033e6d963a10e8a84b94f3868eb6076b7e2c6634
-        Produk::create([
-            'kode_produk' => $request->kode_produk,
-            'nama_produk' => $request->nama_produk,           
-            'harga_beli'=> $request->harga_beli,
-            'harga_jual' => $request->harga_jual,
-            'stok' => $request->stok,
-            'gambar' => $nama_gambar,
-        ]);
-        */
 
         $produk = new Produk;
         $produk->kode_produk = $request->get('kode_produk');
