@@ -29,7 +29,7 @@
                         <td>{{ $b->nomor_telepon }}</td>
                         <td>{{ $b->role }}</td>
                         <td>
-                            <form action="{{ route('user.destroy',['user'=>$b->id]) }}" method="POST">
+                            <form action="{{ route('user.destroy',['user'=>$b->id]) }}" method="POST" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda Yakin Menghapus Data User?')">
                                 <a class="btn btn-info" href="{{ route('user.show',$b->id) }}">Show</a>
                                 <a class="btn btn-primary" href="{{ route('user.edit',$b->id) }}">Edit</a>
                     

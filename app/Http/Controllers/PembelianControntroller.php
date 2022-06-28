@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pembelian;
+use App\Models\PembelianDetail;
+use App\Models\Produk;
 use App\Models\Supplier;
 
-class PembelianControntroller extends Controller
+class PembelianController extends Controller
 {
     public function index()
     {
         $supplier = Supplier::orderBy('nama')->get();
 
-        return view('pembelian.index', compact('supplier'));
+        return view('data_pembelian.index', compact('supplier'));
     }
 
     public function data()
@@ -55,7 +57,7 @@ class PembelianControntroller extends Controller
     public function create($id)
     {
         $pembelian = new Pembelian();
-        $pembelian->id_supplier = $id;
+        $pembelian->id = $id;
         $pembelian->total_item  = 0;
         $pembelian->total_harga = 0;
         $pembelian->diskon      = 0;
@@ -63,9 +65,9 @@ class PembelianControntroller extends Controller
         $pembelian->save();
 
         session(['id_pembelian' => $pembelian->id_pembelian]);
-        session(['id_supplier' => $pembelian->id_supplier]);
+        session(['id' => $pembelian->id]);
 
-        return redirect()->route('pembelian_detail.index');
+        return redirect()->route('pembelian.index');
     }
 
     public function store(Request $request)
@@ -118,7 +120,7 @@ class PembelianControntroller extends Controller
         $pembelian = Pembelian::find($id);
         $detail    = PembelianDetail::where('id_pembelian', $pembelian->id_pembelian)->get();
         foreach ($detail as $item) {
-            $produk = Produk::find($item->id_produk);
+            $produk = Produk::find($item->id);
             if ($produk) {
                 $produk->stok -= $item->jumlah;
                 $produk->update();

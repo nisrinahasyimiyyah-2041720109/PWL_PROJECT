@@ -58,7 +58,11 @@ class ProdukController extends Controller
         if ($request->file('gambar')) {
            $nama_gambar = $request->file('gambar')->store('gambar', 'public');
         }
+<<<<<<< HEAD
+
+=======
         /*
+>>>>>>> 033e6d963a10e8a84b94f3868eb6076b7e2c6634
         Produk::create([
             'kode_produk' => $request->kode_produk,
             'nama_produk' => $request->nama_produk,           

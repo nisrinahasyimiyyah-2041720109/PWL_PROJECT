@@ -134,5 +134,12 @@ class PegawaiController extends Controller
         return redirect()->route('pegawai.index')
             -> with('success', 'Data Pegawai Berhasil Dihapus');
     }
-}
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $pegawai = Pegawai::where('nama', 'like', "%" . $keyword . "%")->paginate(3);
+        return view('data_pegawai.index', compact('pegawai'));
+    }      
+
+}
