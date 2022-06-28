@@ -21,11 +21,11 @@
                     <form method="post" action="{{ route('pengeluaran.update',$pengeluaran->id) }}" enctype="multipart/form-data" id="myForm">                     
                         @csrf 
                         @method('PUT')                                            
-                            <!-- <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="nama" value="{{ $pegawai->nama }}" 
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal</label>
+                                <input type="text" name="tanggal" class="form-control" id="tanggal" value="{{ $pengeluaran->tanggal}}" 
                                 aria-describedby="nama">
-                            </div> -->
+                            </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <input type="text" name="deskripsi" class="form-control" id="deskripsi" value="{{ $pengeluaran->deskripsi}}" 

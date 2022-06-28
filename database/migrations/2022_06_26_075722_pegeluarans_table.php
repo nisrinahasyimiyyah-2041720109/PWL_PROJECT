@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BuatPengeluaranTable extends Migration
+class PegeluaransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class BuatPengeluaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengeluaran', function (Blueprint $table) {
+        Schema::create('pengeluarans', function (Blueprint $table) {
             $table->increments('id_pengeluaran');
+            $table->text('tanggal');
             $table->text('deskripsi');
             $table->integer('nominal');
             $table->timestamps();
@@ -28,6 +29,6 @@ class BuatPengeluaranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengeluaran');
+        Schema::dropIfExists('pengeluarans');
     }
 }

@@ -15,9 +15,9 @@ class PengeluaranController extends Controller
     public function index()
     {
         //menampilkan data Pegawai menggunakan pagination
-        $pengeluaran = Pengeluaran::paginate(3); 
-        return view('data_pengeluaran.index', ['blog' => $pengeluaran])
-                ->with('title', 'Daftar Pengeluaran');
+        $pengeluarans = Pengeluaran::paginate(3); 
+        return view('data_pengeluaran.index', ['blog' => $pengeluarans])
+                ->with('title', 'Daftar Pegawai');
     }
 
     /**
@@ -41,16 +41,17 @@ class PengeluaranController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            // 'tanggal' => 'required',
+            'tanggal' => 'required',
             'deskripsi' => 'required',
             'nominal' => 'required',
         ]);
 
 
-        Pegawai::create([
-            //'tanggal' => $request->tanggal,
+        Pengeluaran::create([
+            'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi,
             'nominal'=> $request->nominal,
+            
         ]);
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('pengeluaran.index')
@@ -80,7 +81,7 @@ class PengeluaranController extends Controller
     public function edit($id)
     {
         //menampilkan detail data dengan menemukan berdasarkan id untuk diedit
-        $pegawai = Pegawai::find($id);
+        $pengeluaran = Pengeluaran::find($id);
         return view('data_pengeluaran.edit', compact('pengeluaran'))
             ->with('title', 'Edit Data Pengeluaran');
     }
@@ -96,12 +97,13 @@ class PengeluaranController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            // 'nama' => 'required',
+            'tanggal' => 'required',
             'deskripsi' => 'required',
             'nominal' => 'required',
         ]);
 
         $pengeluaran = Pengeluaran::find($id);
+        $pengeluaran->tanggal = $request->get('tanggal');
         $pengeluaran->deskripsi = $request->get('deskripsi');
         $pengeluaran->nominal = $request->get('nominal');
 
@@ -123,7 +125,14 @@ class PengeluaranController extends Controller
         //fungsi eloquent untuk menghapus data
         Pengeluaran::find($id)->delete();
         return redirect()->route('pengeluaran.index')
-            -> with('success', 'Data Pngeluaran Berhasil Dihapus');
+            -> with('success', 'Data Pengeluaran Berhasil Dihapus');
     }
-}
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $pengeluaran = Pengeluaran::where('deskripsi', 'like', "%" . $keyword . "%")->paginate(3);
+        return view('data_pengeluaran.index', compact('pengeluaran'));
+    }      
+
+}

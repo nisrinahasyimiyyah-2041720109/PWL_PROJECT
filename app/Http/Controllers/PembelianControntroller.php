@@ -45,8 +45,8 @@ class PembelianController extends Controller
             ->addColumn('aksi', function ($pembelian) {
                 return '
                 <div class="btn-group">
-                    <button onclick="showDetail(`'. route('data_pembelian.show', $pembelian->id_pembelian) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-eye"></i></button>
-                    <button onclick="deleteData(`'. route('data_pembelian.destroy', $pembelian->id_pembelian) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                    <button onclick="showDetail(`'. route('pembelian.show', $pembelian->id_pembelian) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-eye"></i></button>
+                    <button onclick="deleteData(`'. route('pembelian.destroy', $pembelian->id_pembelian) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })
@@ -67,7 +67,7 @@ class PembelianController extends Controller
         session(['id_pembelian' => $pembelian->id_pembelian]);
         session(['id' => $pembelian->id]);
 
-        return redirect()->route('data_pembelian_detail.index');
+        return redirect()->route('pembelian.index');
     }
 
     public function store(Request $request)
@@ -86,7 +86,7 @@ class PembelianController extends Controller
             $produk->update();
         }
 
-        return redirect()->route('data_pembelian.index');
+        return redirect()->route('pembelian.index');
     }
 
     public function show($id)

@@ -3,7 +3,7 @@
 @section('content')
     <div class="table-responsive">
     <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('pegawai.create') }}">+ Tambah Data Pegawai</a>
+            <a class="btn btn-success" href="{{ route('pengeluaran.create') }}">+ Tambah Data Pengeluaran</a>
         </div>
         <table class="table table-head-fixed table-hover">
             <thead>
@@ -19,7 +19,7 @@
                 @foreach($blog as $b)
                 <tr>
                     <td>{{ $b->id }}</td>
-                    <!-- <td>{{ $b->tanggal }}</td> -->
+                    <td>{{ $b->tanggal }}</td>
                     <td>{{ $b->deskripsi }}</td>
                     <td>{{ $b->nominal }}</td>
                     <td>

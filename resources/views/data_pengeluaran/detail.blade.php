@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item"><b>Tanggal: </b>{{$pengeluaran->tanggal}}</li> -->
+                        <li class="list-group-item"><b>Tanggal: </b>{{$pengeluaran->tanggal}}</li> 
                         <li class="list-group-item"><b>Deskripsi: </b>{{$pengeluaran->pengeluaran}}</li>
                         <li class="list-group-item"><b>Nominal: </b>{{$pengeluaran->nominal}}</li>
                     </ul>

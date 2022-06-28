@@ -20,10 +20,10 @@
                 @endif
                     <form method="post" action="{{ route('pengeluaran.store') }}" enctype="multipart/form-data" id="myForm">
                         @csrf
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="tanggal">Tanggal</label>
-                                <input type="date" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal">
-                            </div> -->
+                                <input type="text" name="tanggal" class="form-control" id="tanggal" aria-describedby="tanggal">
+                            </div> 
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <input type="text" name="deskripsi" class="form-control" id="deskripsi" aria-describedby="deskripsi">
