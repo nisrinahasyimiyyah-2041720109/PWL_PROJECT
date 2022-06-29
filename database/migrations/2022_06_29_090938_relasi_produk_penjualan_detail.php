@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RelasiPenjualanUserTable extends Migration
+class RelasiProdukPenjualanDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class RelasiPenjualanUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('penjualans', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id')->on('users'); 
+        Schema::table('penjualan_details', function (Blueprint $table) {
+            $table->foreign('id_produk')->references('id')->on('produks'); 
         });
     }
 
@@ -25,8 +25,8 @@ class RelasiPenjualanUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('penjualans', function (Blueprint $table) {
-            $table->dropForeign(['id_user']);
+        Schema::table('penjualan_details', function (Blueprint $table) {
+            $table->dropForeign(['id_produk']);
         });
     }
 }

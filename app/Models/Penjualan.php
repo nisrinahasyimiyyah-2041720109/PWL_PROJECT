@@ -15,6 +15,6 @@ class Penjualan extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 }

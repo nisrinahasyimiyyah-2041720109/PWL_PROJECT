@@ -70,12 +70,12 @@
                     </li>                
                 </li>
                 <li class="nav-header">TRANSAKSI</li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ url('/data_pembelian') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pembelian</p>
                         </a>
-                    </li>   
+                    </li>    -->
                     <li class="nav-item">
                         <a href="{{ route('transaksi.daftar') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
