@@ -14,12 +14,11 @@ class CreatePenjualanDetailsTable extends Migration
     public function up()
     {
         Schema::create('penjualan_details', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_penjualan_detail');
             $table->bigInteger('id_penjualan');
             $table->bigInteger('id_produk');
             $table->integer('harga_jual');
             $table->integer('jumlah');
-            $table->tinyInteger('diskon')->default(0);
             $table->integer('subtotal');
             $table->timestamps();
         });

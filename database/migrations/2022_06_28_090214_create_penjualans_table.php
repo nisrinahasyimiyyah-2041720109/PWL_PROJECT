@@ -14,10 +14,9 @@ class CreatePenjualansTable extends Migration
     public function up()
     {
         Schema::create('penjualans', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_penjualan');
             $table->integer('total_item');
             $table->integer('total_harga');
-            $table->tinyInteger('diskon')->default(0);
             $table->integer('bayar')->default(0);
             $table->integer('diterima')->default(0);
             $table->bigInteger('id_user');

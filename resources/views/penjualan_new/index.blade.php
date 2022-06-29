@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($penjualan as $p)
+                        @foreach ($detail as $p)
                         <tr>
                             <td> {{ $loop->iteration }} </td>
                             <td> {{ $p->produk->nama_produk }}  </td>
@@ -68,7 +68,14 @@
                             <td>Rp. {{ $p->harga_jual }} </td>
                             <td>Rp. {{ $p->harga_jual*$p->jumlah }} </td>
                             <td>
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                <form action="{{ route('transaksi.destroy',['transaksi'=>$p->id_penjualan_detail]) }}" method="POST" method="POST" class="d-inline" 
+                                    onsubmit="return confirm('Apakah Anda Yakin Menghapus Data Produk?')">
+                    
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -79,49 +86,48 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td style="text-align:left;">Total Pembelian</td>
                             <td>
-                                <input type="text" id="total" value="Rp {{ $penjualan->sum('subtotal') }}" readonly/>
-                            </td>
+                                <div class="form-group">
+                                    <label style="text-align:left;" for="total">Total Pembelian</label>
+                                    <input type="text" name="total" class="form-control" id="total" value="Rp {{ $detail->sum('subtotal') }}" 
+                                    aria-describedby="total" readonly>
+                                </div>
+                            </td>                            
                                     
                             <tr>
                                 <td style="border:none;"></td>
                                 <td style="border:none;"></td>
                                 <td style="border:none;"></td>
-                                <td style="text-align:left;">Pembayaran</td>
+                                
                                 <td style="text-align:left;">
-                                    <input type="text" id="bayar" name="bayar" class="form-control">
+                                    <div class="form-group">
+                                        <label for="bayar">Pembayaran</label>
+                                        <input type="text" name="bayar" class="form-control" id="bayar" 
+                                        aria-describedby="bayar">
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="border:none;"></td>
                                 <td style="border:none;"></td>
                                 <td style="border:none;"></td>
-                                <td style="text-align:left;">Kembalian</td>
+                                
                                 <td style="text-align:left;">
-                                    <input type="text" id="kembalian" value="Rp " readonly/>
+                                    <div class="form-group">
+                                        <label for="kembalian">Kembalian</label>
+                                        <input type="text" name="kembalian" class="form-control" id="kembalian" 
+                                        aria-describedby="kembalian" readonly>
+                                    </div>
                                 </td>
                             </tr>             
                         </tfoot>                 
                     </table>
                     <div class="col-sm-12">
-                        <button class="btn btn-success btn-sm float-right">Submit</button>
+                        <button class="btn btn-success btn-sm float-right">Simpan Transaksi</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-@push('scripts')
-<script type="text/javascript">
-    $('input').keyup(function() {
-        var txtFirstNumberValue = document.getElementById('bayar').value;
-        var txtSecondNumberValue = document.getElementById('total').value;
-        var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
-            if (result!="") {
-                document.getElementById('kembalian').value = result;
-            }
-    })
-</script>
-@endpush
 @endsection
+

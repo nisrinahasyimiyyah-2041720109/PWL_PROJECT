@@ -71,21 +71,15 @@
                 </li>
                 <li class="nav-header">TRANSAKSI</li>
                     <li class="nav-item">
-                        <a href="{{ url('/pengeluaran') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Pengeluaran</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ url('/data_pembelian') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pembelian</p>
                         </a>
                     </li>   
                     <li class="nav-item">
-                        <a href="{{ url('/user') }}" class="nav-link">
+                        <a href="{{ route('transaksi.daftar') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Penjualan</p>
+                        <p>Daftar Penjualan</p>
                         </a>
                     </li> 
             @elsecan('isPelanggan')  
