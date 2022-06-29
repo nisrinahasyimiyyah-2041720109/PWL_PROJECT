@@ -13,8 +13,11 @@ class PembelianController extends Controller
     public function index()
     {
         $supplier = Supplier::orderBy('nama')->get();
+        $produk = Produk::with('kategori')->get();
+        $pembelian = pembelian::orderBy('id')->get();
 
-        return view('data_pembelian.index', compact('supplier'));
+        return view('pembelian_new.index', compact('supplier','pembelian','produk'))
+        ->with ('title', 'Buat Transaksi Pembelian');
     }
 
     public function data()
@@ -39,9 +42,6 @@ class PembelianController extends Controller
             ->addColumn('supplier', function ($pembelian) {
                 return $pembelian->supplier->nama;
             })
-            ->editColumn('diskon', function ($pembelian) {
-                return $pembelian->diskon . '%';
-            })
             ->addColumn('aksi', function ($pembelian) {
                 return '
                 <div class="btn-group">
@@ -57,7 +57,7 @@ class PembelianController extends Controller
     public function create($id)
     {
         $pembelian = new Pembelian();
-        $pembelian->id = $id;
+        $pembelian->id_supplier = $id;
         $pembelian->total_item  = 0;
         $pembelian->total_harga = 0;
         $pembelian->diskon      = 0;
@@ -65,29 +65,37 @@ class PembelianController extends Controller
         $pembelian->save();
 
         session(['id_pembelian' => $pembelian->id_pembelian]);
-        session(['id' => $pembelian->id]);
+        session(['id_supplier' => $pembelian->id_supplier]);
 
-        return redirect()->route('pembelian.index');
+        return redirect()->route('pembelian_detail.index');
     }
 
     public function store(Request $request)
     {
-        $pembelian = Pembelian::findOrFail($request->id_pembelian);
-        $pembelian->total_item = $request->total_item;
-        $pembelian->total_harga = $request->total;
-        $pembelian->diskon = $request->diskon;
-        $pembelian->bayar = $request->bayar;
-        $pembelian->update();
+
+        $id = Supplier::where('id', $request->pilih_supplier)->first()->id;
+        $detail = pembelian::with('supplier')->where('id', $request->pilih_supplier)->first();
+
+        $pembelian = PembelianDetail::findOrFail($request->id_pembelian);
+       
+        $pembelian->id = request()->id;
+        $pembelian->nama = request()->nama;
+        $pembelian->total_item = 0;
+        $pembelian->total_harga = 0;
+        $pembelian->bayar = 0;
+        $pembelian->save();
 
         $detail = PembelianDetail::where('id_pembelian', $pembelian->id_pembelian)->get();
-        foreach ($detail as $item) {
-            $produk = Produk::find($item->id_produk);
-            $produk->stok += $item->jumlah;
-            $produk->update();
-        }
+        foreach ($id as $item) {
+            $item->update();
 
-        return redirect()->route('pembelian.index');
-    }
+            $supplier = Supplier::find($item->id);
+           
+            $supplier->update();
+    
+        }
+            return redirect()->route('pembelian_new.index');
+}
 
     public function show($id)
     {
@@ -120,7 +128,7 @@ class PembelianController extends Controller
         $pembelian = Pembelian::find($id);
         $detail    = PembelianDetail::where('id_pembelian', $pembelian->id_pembelian)->get();
         foreach ($detail as $item) {
-            $produk = Produk::find($item->id);
+            $produk = Produk::find($item->id_produk);
             if ($produk) {
                 $produk->stok -= $item->jumlah;
                 $produk->update();

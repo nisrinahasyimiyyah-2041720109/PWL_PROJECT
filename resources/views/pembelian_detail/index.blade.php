@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Telepon</td>
-                        <td>: {{ $supplier->nomor_telepon }}</td>
+                        <td>: {{ $supplier->telepon }}</td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
@@ -62,7 +62,7 @@
                         <div class="col-lg-5">
                             <div class="input-group">
                                 <input type="hidden" name="id_pembelian" id="id_pembelian" value="{{ $id_pembelian }}">
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id_produk" id="id_produk">
                                 <input type="text" class="form-control" name="kode_produk" id="kode_produk">
                                 <span class="input-group-btn">
                                     <button onclick="tampilProduk()" class="btn btn-info btn-flat" type="button"><i class="fa fa-arrow-right"></i></button>
@@ -90,7 +90,7 @@
                         <div class="tampil-terbilang"></div>
                     </div>
                     <div class="col-lg-4">
-                        <form action="{{ route('data_pembelian.store') }}" class="form-pembelian" method="post">
+                        <form action="{{ route('pembelian.store') }}" class="form-pembelian" method="post">
                             @csrf
                             <input type="hidden" name="id_pembelian" value="{{ $id_pembelian }}">
                             <input type="hidden" name="total" id="total">
@@ -127,7 +127,7 @@
     </div>
 </div>
 
-@includeIf('data_pembelian_detail.produk')
+@includeIf('pembelian_detail.produk')
 @endsection
 
 @push('scripts')
@@ -141,7 +141,7 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: "{{ route('data_pembelian_detail.data', $id_pembelian) }}",
+                url: '{{ route("pembelian_detail.data", $id_pembelian) }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
@@ -173,7 +173,7 @@
                 alert('Jumlah tidak boleh lebih dari 10000');
                 return;
             }
-            $.post(`{{ url('/data_pembelian_detail') }}/${id}`, {
+            $.post(`{{ url('/pembelian_detail') }}/${id}`, {
                     '_token': $('[name=csrf-token]').attr('content'),
                     '_method': 'put',
                     'jumlah': jumlah
@@ -205,13 +205,13 @@
         $('#modal-produk').modal('hide');
     }
     function pilihProduk(id, kode) {
-        $('#id').val(id);
+        $('#id_produk').val(id);
         $('#kode_produk').val(kode);
         hideProduk();
         tambahProduk();
     }
     function tambahProduk() {
-        $.post("{{ route('data_pembelian_detail.store') }}", $('.form-produk').serialize())
+        $.post('{{ route("pembelian_detail.store") }}', $('.form-produk').serialize())
             .done(response => {
                 $('#kode_produk').focus();
                 table.ajax.reload(() => loadForm($('#diskon').val()));

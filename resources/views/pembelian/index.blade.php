@@ -37,8 +37,8 @@
     </div>
 </div>
 
-@includeIf('data_pembelian.supplier')
-@includeIf('data_pembelian.detail')
+@includeIf('pembelian.supplier')
+@includeIf('pembelian.detail')
 @endsection
 
 @push('scripts')
@@ -51,7 +51,7 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: "{{ route('data_pembelian.data') }}",
+                url: '{{ route("pembelian.data") }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},

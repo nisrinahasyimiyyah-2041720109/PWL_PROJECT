@@ -69,12 +69,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/data_pembelian/data', [PembelianController::class, 'data'])->name('data_pembelian.data');
-        Route::get('/data_pembelian/{id}/create', [PembelianController::class, 'create'])->name('data_pembelian.create');
-        Route::resource('/data_pembelian', PembelianController::class)
-            ->except('create');
+Route::get('/pembelian/data', [PembelianController::class, 'data'])->name('pembelian.data');
+        Route::get('/pembelian/{id}/create', [PembelianController::class, 'create'])->name('pembelian.create');
+        Route::resource('pembelian', PembelianController::class);
 
-        Route::get('/data_pembelian_detail/{id}/data', [PembelianDetailController::class, 'data'])->name('data_pembelian_detail.data');
-        Route::get('/data_pembelian_detail/loadform/{diskon}/{total}', [PembelianDetailController::class, 'loadForm'])->name('data_pembelian_detail.load_form');
-        Route::resource('/data_pembelian_detail', PembelianDetailController::class)
+        Route::get('/pembelian_detail/{id}/data', [PembelianDetailController::class, 'data'])->name('pembelian_detail.data');
+        Route::get('/pembelian_detail/loadform/{diskon}/{total}', [PembelianDetailController::class, 'loadForm'])->name('pembelian_detail.load_form');
+        Route::resource('/pembelian_detail', PembelianDetailController::class)
             ->except('create', 'show', 'edit');
