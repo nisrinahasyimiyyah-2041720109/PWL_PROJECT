@@ -11,7 +11,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Nama</th>
-                        <th>Nomor Telepon</th>
+                        <th>Telepon</th>
                         <th>Alamat</th>
                         <th><i class="fa fa-cog"></i></th>
                     </thead>
@@ -20,10 +20,10 @@
                             <tr>
                                 <td width="5%">{{ $key+1 }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->nomor_telepon }}</td>
+                                <td>{{ $item->telepon }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>
-                                    <a href="{{ route('pembelian.create', $item->id) }}" class="btn btn-primary btn-xs btn-flat">
+                                    <a href="{{ route('pembelian.create', $item->id_supplier) }}" class="btn btn-primary btn-xs btn-flat">
                                         <i class="fa fa-check-circle"></i>
                                         Pilih
                                     </a>

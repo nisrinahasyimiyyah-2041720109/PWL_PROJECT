@@ -70,8 +70,8 @@
                     </li>                
                 </li>
                 <li class="nav-header">TRANSAKSI</li>
-                    <!-- <li class="nav-item">
-                        <a href="{{ url('/data_pembelian') }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ route('pembelian.index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Pembelian</p>
                         </a>

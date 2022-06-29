@@ -13,15 +13,16 @@ class PembelianDetailController extends Controller
     public function index()
     {
         $id_pembelian = session('id_pembelian');
-        $produk = Produk::orderBy('nama_produk')->get();
+        // $produk = Produk::orderBy('nama_produk')->get();
         $supplier = Supplier::find(session('id'));
-        $diskon = Pembelian::find($id_pembelian)->diskon ?? 0;
+        $supplier = Supplier::find(session('nama'));
+        // $diskon = Pembelian::find($id_pembelian)->diskon ?? 0;
 
         if (! $supplier) {
             abort(404);
         }
 
-        return view('data_pembelian_detail.index', compact('id_pembelian', 'produk', 'supplier', 'diskon'));
+        return view('pembelian_new.index', compact('id_pembelian', 'supplier', 'supplier'));
     }
 
     public function data($id)
@@ -41,7 +42,7 @@ class PembelianDetailController extends Controller
             $row['jumlah']      = '<input type="number" class="form-control input-sm quantity" data-id="'. $item->id_pembelian_detail .'" value="'. $item->jumlah .'">';
             $row['subtotal']    = 'Rp. '. format_uang($item->subtotal);
             $row['aksi']        = '<div class="btn-group">
-                                    <button onclick="deleteData(`'. route('data_pembelian_detail.destroy', $item->id_pembelian_detail) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                                    <button onclick="deleteData(`'. route('pembelian_detail.destroy', $item->id_pembelian_detail) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                                 </div>';
             $data[] = $row;
 
@@ -68,20 +69,33 @@ class PembelianDetailController extends Controller
 
     public function store(Request $request)
     {
-        $produk = Produk::where('id', $request->id)->first();
-        if (! $produk) {
-            return response()->json('Data gagal disimpan', 400);
+        $detail = belianDetail::with('produk')->where('id', $request->pilih_produk)->first();
+
+        $total = 0;
+        $total_item = 0;
+
+        foreach ($detail as $item) {
+            $total += $item->harga_beli * $item->jumlah - (($item->diskon * $item->jumlah) / 100 * $item->harga_jual);;
+            $total_item += $item->jumlah;
         }
 
-        $detail = new PembelianDetail();
-        $detail->id_pembelian = $request->id_pembelian;
-        $detail->id = $produk->id;
-        $detail->harga_beli = $produk->harga_beli;
-        $detail->jumlah = 1;
-        $detail->subtotal = $produk->harga_beli;
-        $detail->save();
+        $pembelian = Pembelian::find($request->id_penjualan);
+        $pembelian->total_item = $total_item;
+        $pembelian->total_harga = $total;
+        $pembelian->bayar = $request->bayar;
+        $pembelian->diterima = $request->kembalian;
+        $pembelian->update();
 
-        return response()->json('Data berhasil disimpan', 200);
+        $detail = PembelianDetail::where('id_penjualan', $pembelian->id_pembelian)->get();
+        foreach ($detail as $item) {
+            $item->update();
+
+            $produk = Produk::find($item->id);
+            $produk->stok -= $item->jumlah;
+            $produk->update();
+        }
+
+        return redirect()->route('transaksi.selesai');
     }
 
     public function update(Request $request, $id)
