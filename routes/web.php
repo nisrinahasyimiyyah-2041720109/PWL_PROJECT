@@ -11,6 +11,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PembelianControntroller;
 use App\Http\Controllers\PembelianDetailController;
 
 
@@ -49,7 +50,11 @@ Route::get('/transaksi/selesai', [PenjualanController::class, 'selesai'])->name(
 Route::get('/transaksi/{id}/data', [PenjualanDetailController::class, 'data'])->name('transaksi.data');
 Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [PenjualanDetailController::class, 'loadForm'])->name('transaksi.load_form');
 Route::get('/transaksi/baru', [PenjualanController::class, 'create'])->name('transaksi.baru');
+Route::get('/daftar-transaksi', [PenjualanController::class, 'showTransaksi'])->name('transaksi.daftar');
+
 Route::resource('transaksi', PenjualanDetailController::class);
+
+Route::get('/cetak_pdf/{id}', [PenjualanController::class, 'cetak_pdf'])->name('cetak_pdf');
 
 //Route::post('transaksi/{id}', [PenjualanNewController::class, 'pembaruan'])->name('transaksi.pembaruan');
 
@@ -69,9 +74,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Route::get('/pembelian/data', [PembelianController::class, 'data'])->name('pembelian.data');
         Route::get('/pembelian/{id}/create', [PembelianController::class, 'create'])->name('pembelian.create');
         Route::resource('pembelian', PembelianController::class);
+
 
         Route::get('/pembelian_detail/{id}/data', [PembelianDetailController::class, 'data'])->name('pembelian_detail.data');
         Route::get('/pembelian_detail/loadform/{diskon}/{total}', [PembelianDetailController::class, 'loadForm'])->name('pembelian_detail.load_form');

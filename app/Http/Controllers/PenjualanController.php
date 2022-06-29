@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
 use App\Models\PenjualanDetail;
+use App\Models\Produk;
 use Illuminate\Http\Request;
+use PDF;
 
 class PenjualanController extends Controller
 {
@@ -33,13 +35,6 @@ class PenjualanController extends Controller
             ->addColumn('tanggal', function ($penjualan) {
                 return tanggal_indonesia($penjualan->created_at, false);
             })
-            ->addColumn('kode_member', function ($penjualan) {
-                $member = $penjualan->member->kode_member ?? '';
-                return '<span class="label label-success">'. $member .'</spa>';
-            })
-            ->editColumn('diskon', function ($penjualan) {
-                return $penjualan->diskon . '%';
-            })
             ->editColumn('kasir', function ($penjualan) {
                 return $penjualan->user->name ?? '';
             })
@@ -51,7 +46,7 @@ class PenjualanController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['aksi', 'kode_member'])
+            ->rawColumns(['aksi'])
             ->make(true);
     }
 
@@ -60,7 +55,6 @@ class PenjualanController extends Controller
         $penjualan = new Penjualan();
         $penjualan->total_item = 0;
         $penjualan->total_harga = 0;
-        $penjualan->diskon = 0;
         $penjualan->bayar = 0;
         $penjualan->diterima = 0;
         $penjualan->id_user = auth()->id();
@@ -72,33 +66,34 @@ class PenjualanController extends Controller
 
     public function store(Request $request)
     {
-        $detail = PenjualanDetail::with('produk')->where('id', $request->pilih_produk)->first();
+        $active = Penjualan::orderBy('id_penjualan')->first()->id_penjualan;
+        $detail = PenjualanDetail::with('produk')->where('id_penjualan', $active)->get();
+        //dd($detail);
 
         $total = 0;
         $total_item = 0;
 
         foreach ($detail as $item) {
-            $total += $item->harga_jual * $item->jumlah - (($item->diskon * $item->jumlah) / 100 * $item->harga_jual);;
-            $total_item += $item->jumlah;
+            $total += $item->harga_jual * $item->jumlah;
+            $total_item += $item->jumlah;          
         }
-
-        $penjualan = Penjualan::find($request->id_penjualan);
+        //dd($total_item);
+        $penjualan = Penjualan::where('id_penjualan', $active)->first();
         $penjualan->total_item = $total_item;
         $penjualan->total_harga = $total;
-        $penjualan->diskon = 0;
         $penjualan->bayar = $request->bayar;
-        $penjualan->diterima = $request->kembalian;
+        $penjualan->diterima = $request->bayar - $total;
         $penjualan->update();
-
-        $detail = PenjualanDetail::where('id_penjualan', $penjualan->id_penjualan)->get();
-        foreach ($detail as $item) {
-            $item->diskon = $request->diskon;
-            $item->update();
-
-            $produk = Produk::find($item->id);
-            $produk->stok -= $item->jumlah;
-            $produk->update();
-        }
+        
+        // $detail = PenjualanDetail::where('id_penjualan', $active)->first();
+        // $id = PenjualanDetail::where('id_penjualan', $active)->first()->id_produk;
+        // $jumlah = PenjualanDetail::where('id_penjualan', $active)->first()->jumlah;
+        // foreach ($detail as $item) {
+        //     $produk = Produk::where('id', $id);
+        //     dd($produk);
+        //     $produk->stok -= $jumlah;
+        //     $produk->update();
+        // }
 
         return redirect()->route('transaksi.selesai');
     }
@@ -150,22 +145,24 @@ class PenjualanController extends Controller
 
     public function selesai()
     {
-        return view('penjualan.selesai', compact('setting'));
+        $detail = PenjualanDetail::with('produk')->first();
+        return view('penjualan_new.selesai', compact('detail'))
+            ->with('title', 'Selesai Transaksi');
     }
 
-    public function notaBesar()
+    public function cetak_pdf($id) 
     {
-        //$setting = Setting::first();
-        $penjualan = Penjualan::find(session('id_penjualan'));
-        if (! $penjualan) {
-            abort(404);
-        }
-        $detail = PenjualanDetail::with('produk')
-            ->where('id_penjualan', session('id_penjualan'))
-            ->get();
+        $detail = PenjualanDetail::with('produk')->where('id_penjualan', $id)->get();
+        $penjualan = Penjualan::find($id);
+        $pdf = PDF::loadview('penjualan_new.nota', compact('detail', 'penjualan'));
+        return $pdf->stream();
+    }
 
-        $pdf = PDF::loadView('penjualan.nota_besar', compact('penjualan', 'detail'));
-        $pdf->setPaper(0,0,609,440, 'potrait');
-        return $pdf->stream('Transaksi-'. date('Y-m-d-his') .'.pdf');
+    public function showTransaksi()
+    {
+        $penjualan = Penjualan::all();
+        $paginate = Penjualan::paginate(5);
+        return view('penjualan_new.daftar_transaksi', ['penjualan' => $penjualan, 'paginate'=>$paginate])
+                ->with('title', 'Daftar Transaksi Penjualan');
     }
 }
