@@ -40,6 +40,7 @@ class ProductTest extends TestCase
     /** @test */
     public function test_kode_produk_is_required()
     {   
+        # mencoba menambahkan data baru dengan kode_produk kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => '',
             'nama_produk' => 'Buncis',
@@ -50,11 +51,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('kode_produk');
     }
 
     public function test_nama_produk_is_required()
     {   
+        # mencoba menambahkan data baru dengan nama_produk kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => '',
@@ -65,11 +68,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('nama_produk');
     }
 
     public function test_harga_beli_is_required()
     {   
+        # mencoba menambahkan data baru dengan harga_beli kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -80,11 +85,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('harga_beli');
     }
 
     public function test_harga_jual_is_required()
     {   
+        # mencoba menambahkan data baru dengan harga_jual kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -95,11 +102,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('harga_jual');
     }
 
     public function test_stok_is_required()
     {   
+        # mencoba menambahkan data baru dengan stok kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -110,11 +119,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('stok');
     }
 
     public function test_gambar_is_required()
     {   
+        # mencoba menambahkan data baru dengan gambar kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -125,11 +136,13 @@ class ProductTest extends TestCase
             'kategori_id' => 'Sayur'
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('gambar');
     }
 
     public function test_kategori_is_required()
     {   
+        # mencoba menambahkan data baru dengan kategori kosong
         $response = $this->post(route('produk.store'), [
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -140,12 +153,13 @@ class ProductTest extends TestCase
             'kategori_id' => ''
         ]);
 
+        # memastikan bahwa session memiliki error
         $response->assertSessionHasErrors('kategori_id');
     }
 
     public function user_can_show_product_detail()
     {
-        // user membuka halaman tambah data baru
+        // user membuka halaman data dengan index 1
         $response = $this->get('/produk/1');
 
         $response->assertStatus(500);
@@ -167,9 +181,7 @@ class ProductTest extends TestCase
     /** @test */
     public function user_can_delete_existing_data()
     {
-        // generate 1 post data
-        //$produk = Produk::factory()->create();
-
+        # mencoba menambahkan data baru 
         $produk = Produk::create([
             'kode_produk' => 'PS006',
             'nama_produk' => 'Buncis',
@@ -180,10 +192,10 @@ class ProductTest extends TestCase
             'kategori_id' => 2
         ]);
 
-        // post delete request
+        // delete data
         Produk::destroy($produk->id);
 
-        // check data di table post
+        // check data di tabel produks
         $this->assertDatabaseMissing('produks', [
             'id' => $produk->id
         ]);
