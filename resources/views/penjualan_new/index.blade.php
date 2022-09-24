@@ -130,4 +130,15 @@
         </div>
     </div>
 @endsection
-
+@push('scripts')
+<script type="text/javascript">
+    $('input').keyup(function() {
+        var txtFirstNumberValue = parseInt($('#bayar').value());
+        var txtSecondNumberValue = parseInt($('#total').value());
+        var result = txtFirstNumberValue - txtSecondNumberValue;
+            if (result!="") {
+                document.getElementById('kembalian').value() = result;
+            }
+    })
+</script>
+@endpush

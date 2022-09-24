@@ -56,17 +56,9 @@ Route::resource('transaksi', PenjualanDetailController::class);
 
 Route::get('/cetak_pdf/{id}', [PenjualanController::class, 'cetak_pdf'])->name('cetak_pdf');
 
-//Route::post('transaksi/{id}', [PenjualanNewController::class, 'pembaruan'])->name('transaksi.pembaruan');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/*
-Route::get('/penjualan/data', [PenjualanController::class, 'data'])->name('penjualan.data');
-Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
-Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->name('penjualan.show');
-Route::delete('/penjualan/{id}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
-*/
 
 Route::resource('pengeluaran', PengeluaranController:: class);
 
