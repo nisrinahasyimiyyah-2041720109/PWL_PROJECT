@@ -21,10 +21,10 @@ class ProductTest extends TestCase
     /** @test */
     public function test_create_new_data()
     {
-        // user membuka halaman tambah data baru
-        $response = $this->get('/produk/create');
-
-        $response->assertStatus(500);
+        $user = User::factory()->create();
+        //buka halaman tambah produk
+        $response = $this->actingAs($user)->get('/produk/create');
+        $response->assertStatus(200);
 
         $response->assertSeeText("Kode Produk");
         $response->assertSeeText("Nama Produk");
@@ -157,12 +157,13 @@ class ProductTest extends TestCase
         $response->assertSessionHasErrors('kategori_id');
     }
 
+    /** @test */
     public function user_can_show_product_detail()
     {
-        // user membuka halaman data dengan index 1
-        $response = $this->get('/produk/1');
-
-        $response->assertStatus(500);
+        $user = User::factory()->create();
+        //buka halaman tambah produk
+        $response = $this->actingAs($user)->get('/produk/1');
+        $response->assertStatus(200);
 
         $response->assertSeeText("Halaman Tampil Detail Produk");
 

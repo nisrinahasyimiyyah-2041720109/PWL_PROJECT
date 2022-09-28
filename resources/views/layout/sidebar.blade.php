@@ -71,12 +71,6 @@
                 </li>
                 <li class="nav-header">TRANSAKSI</li>
                     <li class="nav-item">
-                        <a href="{{ route('pembelian.index') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Pembelian</p>
-                        </a>
-                    </li>    -->
-                    <li class="nav-item">
                         <a href="{{ route('transaksi.daftar') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Daftar Penjualan</p>
